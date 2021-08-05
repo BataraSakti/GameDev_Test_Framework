@@ -1,0 +1,1 @@
+sprite_delete_safe(ui_character_professor);

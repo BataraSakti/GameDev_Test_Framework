@@ -1,0 +1,539 @@
+{
+  "C": {
+    "N1": 2,
+    "N2": 10,
+    "N3": 10,
+    "N4": 11,
+    "N5": 10,
+    "N6": 8,
+    "MAXRecord_KEY": 51,
+    "Meta_1_1": {
+      "Inputs": 1,
+      "MCount": 4,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 4,
+      "Time": 15
+    },
+    "Meta_1_2": {
+      "Inputs": 1,
+      "MCount": 4,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 4,
+      "Time": 15
+    },
+    "Meta_2_1": {
+      "Inputs": 3,
+      "MCount": 7,
+      "ACount": 3,
+      "MOrder": 0,
+      "Rounds": 4,
+      "Time": 20
+    },
+    "Meta_2_2": {
+      "Inputs": 3,
+      "MCount": 7,
+      "ACount": 3,
+      "MOrder": 0,
+      "Rounds": 4,
+      "Time": 20
+    },
+    "Meta_3_1": {
+      "Inputs": 1,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 16,
+      "Time": 30
+    },
+    "Meta_3_2": {
+      "Inputs": 1,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 16,
+      "Time": 30
+    },
+    "Meta_4_1": {
+      "Inputs": 1,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 16,
+      "Time": 30
+    },
+    "Meta_4_2": {
+      "Inputs": 1,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 16,
+      "Time": 30
+    },
+    "Meta_5_1": {
+      "Inputs": 7,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 29,
+      "Time": 30
+    },
+    "Meta_5_2": {
+      "Inputs": 7,
+      "MCount": 7,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 29,
+      "Time": 30
+    },
+    "Meta_6_1": {
+      "Inputs": 1,
+      "MCount": 1,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 1,
+      "Time": 30
+    },
+    "Meta_6_2": {
+      "Inputs": 1,
+      "MCount": 1,
+      "ACount": 1,
+      "MOrder": 1,
+      "Rounds": 1,
+      "Time": 30
+    }
+  },
+  "Game_1": {
+    "R1": {
+      "Record_KEY": 0,
+      "Mode": 1,
+      "Type": 1,
+      "Count": 26,
+      "String": "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"
+    },
+    "R2": {
+      "Record_KEY": 1,
+      "Mode": 1,
+      "Type": 2,
+      "Count": 10,
+      "String": "0,1,2,3,4,5,6,7,8,9"
+    }
+  },
+  "Game_2": {
+    "R1": {
+      "Record_KEY": 2,
+      "Mode": 2,
+      "Type": 1,
+      "String": "Supermarket,Store,Market",
+      "Cat": "Shop",
+      "Values": "Hospital,Canteen,Hotel,Hostel,House,Building,Museum,School,Playground,Home,Park,Ocean"
+    },
+    "R2": {
+      "Record_KEY": 3,
+      "Mode": 2,
+      "Type": 1,
+      "String": "Bite,Chew,Feed",
+      "Cat": "Eat",
+      "Values": "Food,Water,Fish,Cake,Rice,Bake,Kitchen,Drink,Soda,Tea,Sugar,Fat,Full"
+    },
+    "R3": {
+      "Record_KEY": 4,
+      "Mode": 2,
+      "Type": 1,
+      "String": "Read,Learn,Think",
+      "Cat": "Study",
+      "Values": "School,Pen,Books,Laptop,Eraser,Mouse,Keypad,Notebook,Smartphone,Student,Classroom"
+    },
+    "R4": {
+      "Record_KEY": 5,
+      "Mode": 2,
+      "Type": 1,
+      "String": "Cleanse,Rinse,Shower",
+      "Cat": "Wash",
+      "Values": "Bathroom,Bedroom,Toothbrush,Water,Oil,Soap,Wet,Dry,Tissue,Towel,Cleanser"
+    },
+    "R5": {
+      "Record_KEY": 6,
+      "Mode": 2,
+      "Type": 1,
+      "String": "Leave,Move,Travel",
+      "Cat": "Go",
+      "Values": "Place,Heart,Movies,Store,Right,Shop,Stay,Put,Still,Frozen,Home,House"
+    },
+    "R6": {
+      "Record_KEY": 7,
+      "Mode": 2,
+      "Type": 2,
+      "String": "Red,Green,White",
+      "Cat": "Color",
+      "Values": "Cloud,Money,High,House,Motorbike,Balloon,Apple,Bed,Desk,Chair,Door,Wall"
+    },
+    "R7": {
+      "Record_KEY": 8,
+      "Mode": 2,
+      "Type": 2,
+      "String": "Father,Mother,Sister",
+      "Cat": "Family",
+      "Values": "Friends,Teacher,Students,Lawyer,Driver,Employee,Stranger,Police,Painter"
+    },
+    "R8": {
+      "Record_KEY": 9,
+      "Mode": 2,
+      "Type": 2,
+      "String": "Cooking,Painting,Hiking",
+      "Cat": "Hobby",
+      "Values": "Chef,Teacher,Painter,Biker,Motorcycle,Kitchen,Computer,Books,School"
+    },
+    "R9": {
+      "Record_KEY": 10,
+      "Mode": 2,
+      "Type": 2,
+      "String": "Grandfather,Grandmother,Grandchild",
+      "Cat": "Family",
+      "Values": "Room,House,Toys,People,Garden,Home,Cook,Together,Inside,Bestfriend"
+    },
+    "R10": {
+      "Record_KEY": 11,
+      "Mode": 2,
+      "Type": 2,
+      "String": "Apartment,House,Villa",
+      "Cat": "Home",
+      "Values": "Ocean,Farm,Hills,Mountain,Beach,Road,Street,River,Cloud,People,Person"
+    }
+  },
+  "Game_3": {
+    "R1": {
+      "Record_KEY": 12,
+      "Mode": 3,
+      "Type": 1,
+      "String": "Reduce the amount of paper that you &amp;val&amp;.",
+      "Answer": "use",
+      "Values": "used,uses,usage,using,use"
+    },
+    "R2": {
+      "Record_KEY": 13,
+      "Mode": 3,
+      "Type": 1,
+      "String": "Use your smartphone to &amp;val&amp; photos of things you need to remember.",
+      "Answer": "take",
+      "Values": "take,took,taking,takes,taken"
+    },
+    "R3": {
+      "Record_KEY": 14,
+      "Mode": 3,
+      "Type": 1,
+      "String": "&amp;val&amp; your desk at the end of every day.",
+      "Answer": "Clean",
+      "Values": "Cook,Cleanse,Cleaned,Clean,Cleans"
+    },
+    "R4": {
+      "Record_KEY": 15,
+      "Mode": 3,
+      "Type": 1,
+      "String": "I do my homework in the study &amp;val&amp;.",
+      "Answer": "room",
+      "Values": "road,street,field,room,mall"
+    },
+    "R5": {
+      "Record_KEY": 16,
+      "Mode": 3,
+      "Type": 1,
+      "String": "Try to keep as &amp;val&amp; information as possible in folders on your computer.",
+      "Answer": "much",
+      "Values": "much,many,mountain,as,well"
+    },
+    "R6": {
+      "Record_KEY": 17,
+      "Mode": 3,
+      "Type": 2,
+      "String": "I think a menu with a variety of dishes is &amp;val&amp; to read.",
+      "Answer": "exciting",
+      "Values": "exciting,excited,excite ,exit,exited"
+    },
+    "R7": {
+      "Record_KEY": 18,
+      "Mode": 3,
+      "Type": 2,
+      "String": "What I like most about the restaurant &amp;val&amp; the tomato soup.",
+      "Answer": "is",
+      "Values": "are,were,is,was,will"
+    },
+    "R8": {
+      "Record_KEY": 19,
+      "Mode": 3,
+      "Type": 2,
+      "String": "I think the food is very fresh and &amp;val&amp;.",
+      "Answer": "delicious",
+      "Values": "delight,nicely,delicious,well,done"
+    },
+    "R9": {
+      "Record_KEY": 20,
+      "Mode": 3,
+      "Type": 2,
+      "String": "I like to &amp;val&amp; to the cinema.",
+      "Answer": "go",
+      "Values": "going,went,by,go,gone"
+    },
+    "R10": {
+      "Record_KEY": 21,
+      "Mode": 3,
+      "Type": 2,
+      "String": "&amp;val&amp; I have a chance to go out, I often go shopping with my friends.",
+      "Answer": "When",
+      "Values": "When,Will,Who,What,How"
+    }
+  },
+  "Game_4": {
+    "R1": {
+      "Record_KEY": 22,
+      "Mode": 4,
+      "Type": 1,
+      "String": "Culture is the prism through &amp;val&amp; we understand the world and the tool by which we shape it.",
+      "Answer": "which",
+      "Values": "where,which,whose,how,what"
+    },
+    "R2": {
+      "Record_KEY": 23,
+      "Mode": 4,
+      "Type": 1,
+      "String": "Arts and culture can &amp;val&amp; people’s lives in subtle or dramatic ways that politicians often struggle to achieve.",
+      "Answer": "transform",
+      "Values": "transform,transfer,able,enable,delight"
+    },
+    "R3": {
+      "Record_KEY": 24,
+      "Mode": 4,
+      "Type": 1,
+      "String": "&amp;val&amp; in culture is increasingly seen as important to social or economic development in various nations.",
+      "Answer": "Investment",
+      "Values": "Insertion,Invest,Investment,Adoption,Enabler"
+    },
+    "R4": {
+      "Record_KEY": 25,
+      "Mode": 4,
+      "Type": 1,
+      "String": "Engagement in arts and culture can &amp;val&amp; a positive role in supporting people emerging from conflict.",
+      "Answer": "play",
+      "Values": "play,lay,lie,pray,make"
+    },
+    "R5": {
+      "Record_KEY": 26,
+      "Mode": 4,
+      "Type": 1,
+      "String": "Arts and culture can help &amp;val&amp; international connections that are vital for any modern nation.",
+      "Answer": "foster",
+      "Values": "burn,inflame,grab,exacerbate,foster"
+    },
+    "R6": {
+      "Record_KEY": 27,
+      "Mode": 4,
+      "Type": 1,
+      "String": "As a nurse, I have my patient assessments finished at around 9:30 a.m., &amp;val&amp; me some time to formally document them in the computer before 10 a.m. when medications are due.",
+      "Answer": "giving",
+      "Values": "giving,follow,following,allow,allowed"
+    },
+    "R7": {
+      "Record_KEY": 28,
+      "Mode": 4,
+      "Type": 2,
+      "String": "As a writer, I like to work in short concentrated &amp;val&amp;, with plenty of procrastination in between.",
+      "Answer": "bursts",
+      "Values": "areas,focus,burns,tears,bursts"
+    },
+    "R8": {
+      "Record_KEY": 29,
+      "Mode": 4,
+      "Type": 2,
+      "String": "On an average day, a registered nurse might administer medication, consult &amp;val&amp; other healthcare providers, monitor patients, educate individuals and families, and be responsible for managing medical records.",
+      "Answer": "with",
+      "Values": "of,to,with,on,in"
+    },
+    "R9": {
+      "Record_KEY": 30,
+      "Mode": 4,
+      "Type": 2,
+      "String": "Since I am a neurologist, I have to sometimes rush to the hospital &amp;val&amp; emergency cases and take care of the patients.",
+      "Answer": "for",
+      "Values": "into,to,for,with,in"
+    },
+    "R10": {
+      "Record_KEY": 31,
+      "Mode": 4,
+      "Type": 2,
+      "String": "I try to be involved &amp;val&amp; my children’s schools and sports activities, so I make it a point that I squeeze in some time for it.",
+      "Answer": "with",
+      "Values": "with,about,for,at,on"
+    },
+    "R11": {
+      "Record_KEY": 32,
+      "Mode": 4,
+      "Type": 2,
+      "String": "&amp;val&amp; the afternoon, I am generally signing forms, writing prescriptions and conducting other necessary paperwork.",
+      "Answer": "Throughout",
+      "Values": "Through,For,At,Throughout,On"
+    }
+  },
+  "Game_5": {
+    "R1": {
+      "Record_KEY": 33,
+      "Mode": 5,
+      "Type": 1,
+      "String": "Experts who study,exercise and aging,offer tips for,older adults,during,the lockdown.",
+      "Answer": "Experts who study exercise and aging offer tips for older adults during the lockdown."
+    },
+    "R2": {
+      "Record_KEY": 34,
+      "Mode": 5,
+      "Type": 1,
+      "String": "Exercise scientists offered,a variety of recommendations,about,the types and amount of activities,older people,might try.",
+      "Answer": "Exercise scientists offered a variety of recommendations about the types and amount of activities older people might try."
+    },
+    "R3": {
+      "Record_KEY": 35,
+      "Mode": 5,
+      "Type": 1,
+      "String": "Look for,opportunities,for simple,and low-tech,muscle workouts,at home.",
+      "Answer": "Look for opportunities for simple and low-tech muscle workouts at home."
+    },
+    "R4": {
+      "Record_KEY": 36,
+      "Mode": 5,
+      "Type": 1,
+      "String": "You need,to talk to,actual experts,if you want,to truly get better,at a skill.",
+      "Answer": "You need to talk to actual experts if you want to truly get better at a skill."
+    },
+    "R5": {
+      "Record_KEY": 37,
+      "Mode": 5,
+      "Type": 1,
+      "String": "You should,definitely do,your research on,what business development is,and,what the role requires.",
+      "Answer": "You should definitely do your research on what business development is and what the role requires."
+    },
+    "R6": {
+      "Record_KEY": 38,
+      "Mode": 5,
+      "Type": 2,
+      "String": "A wider,range of,insects,would,pollinate,certain plants.",
+      "Answer": "A wider range of insects would pollinate certain plants."
+    },
+    "R7": {
+      "Record_KEY": 39,
+      "Mode": 5,
+      "Type": 2,
+      "String": "Engineering,is the field of,research,that uses,math and science,to solve,practical problems.",
+      "Answer": "Engineering is the field of research that uses math and science to solve practical problems."
+    },
+    "R8": {
+      "Record_KEY": 40,
+      "Mode": 5,
+      "Type": 2,
+      "String": "Factor,is something that,plays a role,in a particular,condition or event.",
+      "Answer": "Factor is something that plays a role in a particular condition or event."
+    },
+    "R9": {
+      "Record_KEY": 41,
+      "Mode": 5,
+      "Type": 2,
+      "String": "Statistics,offers,mathematical tools,that can,account for,possible confounders.",
+      "Answer": "Statistics offers mathematical tools that can account for possible confounders."
+    },
+    "R10": {
+      "Record_KEY": 42,
+      "Mode": 5,
+      "Type": 2,
+      "String": "Statistics involves,collecting and analyzing,numerical data,in large quantities,and interpreting,their meaning.",
+      "Answer": "Statistics involves collecting and analyzing numerical data in large quantities and interpreting their meaning."
+    }
+  },
+  "Game_6": {
+    "R1": {
+      "Record_KEY": 43,
+      "Mode": 6,
+      "Type": 1,
+      "Passage": "As the world changes rapidly, education needs to evolve to ensure that younger generations have the necessary skills to be of value in the society. While education needs to evolve, it also needs to become more accessible to the hundreds of millions of young people who are restricted from education by poverty, diversity politics, gender, disability, armed conflict, and displacement.",
+      "A": "Education needs to be adaptive and accessible",
+      "C": "Change is inevitable and we need to adapt",
+      "D": "Education inequality is a huge problem",
+      "B": "Education is important for people",
+      "Answer": "Education is important for people"
+    },
+    "R2": {
+      "Record_KEY": 44,
+      "Mode": 6,
+      "Type": 1,
+      "C": "English is enough",
+      "Passage": "For purely interactive purposes, one language may be all the world needs. There is no end to the things that can be expressed in English-or in any other language. But language is an expression of culture and perhaps the bilingual, multicultural, integrated society is where we are heading. Then we can tell each other about our own special cultures and language.",
+      "B": "A diverse solution to the language problem",
+      "Answer": "A diverse solution to the language problem",
+      "D": "My own endangered language",
+      "A": "One world, one language"
+    },
+    "R3": {
+      "Record_KEY": 45,
+      "Mode": 6,
+      "Type": 1,
+      "Passage": "For many centuries the world has been losing languages, but they do seem to be disappearing at an incredible rate more recently. Roughly 6000 languages are spoken in the world today, yet it is staggering to hear linguists predict that half of them will vanish in this century, and 90 per cent will be gone by the next.",
+      "A": "Saving endangered languages",
+      "C": "The language extinction rate",
+      "D": "New languages of the world",
+      "B": "The evolution of languages",
+      "Answer": "The language extinction rate"
+    },
+    "R4": {
+      "Record_KEY": 46,
+      "Mode": 6,
+      "Type": 1,
+      "Passage": "Consumers concerned about the hazards of noise can reduce noise pollution in many ways. They can purchase noisy products such as garbage disposals and lawnmowers with reduced noise levels. They can also use sound-absorbing materials in their home. Carpeting can be installed instead of hard flooring, and cork and fabric can be used in rooms that tend to be noisy. Also, people can become less noisy.",
+      "A": "People are noisy",
+      "C": "Everywhere is noise",
+      "D": "Noise can be eliminated",
+      "B": "Noise pollution",
+      "Answer": "Noise pollution"
+    },
+    "R5": {
+      "Record_KEY": 47,
+      "Mode": 6,
+      "Type": 2,
+      "C": "English as lingua franca",
+      "Passage": "Every language has subtle distinctions and allusions of its own which cannot be fully expressed in another language. It's not just about literal translation or grammar. A language reflects its culture, from the vocabulary it contains to its style and literary traditions. Not everything can be translated into English or any of the other major languages: it might retain its meaning but it will surely lose its spirit.",
+      "B": "Literary traditions in the world",
+      "Answer": "Language is more than just simply communication",
+      "D": "Language is more than just simply communication",
+      "A": "Every language is different"
+    },
+    "R6": {
+      "Record_KEY": 48,
+      "Mode": 6,
+      "Type": 2,
+      "Passage": "Summer is a wonderful time to spend at West Beach. It is a beach with soft, light-colored sand. The coastline goes on for a long way and many people enjoy walking along with it. Children like to play in the surf and walk along the rocks that are visible at low tide. This is a fun beach for people of all ages.",
+      "A": "Summer is a wonderful time at West Beach",
+      "C": "Walking is nice at West Beach",
+      "D": "Going to the beach in summer",
+      "B": "West Beach is a wonderful beach",
+      "Answer": "West Beach is a wonderful beach"
+    },
+    "R7": {
+      "Record_KEY": 49,
+      "Mode": 6,
+      "Type": 2,
+      "C": "Adults and teenagers are different",
+      "Passage": "Most teenagers and young adults do not know what they want to do for the rest of their lives. It is a big decision. There are a number of things you can do to narrow the choices. For example, you can take an interests test, do some research on your own about a career, try volunteer work in the field in which you are interested, or &quot;job-shadow&quot;, in which you spend a day with a person who is working in a field that interests you. These are just a few helpful ideas as you begin to choose a career.",
+      "B": "Finding a job is hard for young people",
+      "Answer": "A few ideas to help the reader choose a career",
+      "D": "A few ideas to help the reader choose a career",
+      "A": "Teenagers are not able to find jobs"
+    },
+    "R8": {
+      "Record_KEY": 50,
+      "Mode": 6,
+      "Type": 2,
+      "Passage": "Children dream of the day when they will be grown up. They believe that being an experienced adult will truly give them freedom. Then they grow up. They are saddled by bills, responsibilities, sleepiness, and an overwhelming urge for more vacations. Now they long for the days they could roam free all summer without a care in the world.",
+      "A": "Innocence has always battled with experience",
+      "C": "Maturity is offered through wisdom",
+      "D": "Children want to grow up",
+      "B": "Innocence was the highest state",
+      "Answer": "Innocence has always battled with experience"
+    }
+  }
+}

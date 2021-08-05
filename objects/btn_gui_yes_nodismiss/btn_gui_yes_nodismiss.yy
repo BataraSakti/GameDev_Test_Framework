@@ -1,0 +1,42 @@
+{
+  "spriteId": {
+    "name": "btn_large_YES",
+    "path": "sprites/btn_large_YES/btn_large_YES.yy",
+  },
+  "solid": false,
+  "visible": true,
+  "spriteMaskId": null,
+  "persistent": false,
+  "parentObjectId": {
+    "name": "btn_parent",
+    "path": "objects/btn_parent/btn_parent.yy",
+  },
+  "physicsObject": false,
+  "physicsSensor": false,
+  "physicsShape": 0,
+  "physicsGroup": 0,
+  "physicsDensity": 0.5,
+  "physicsRestitution": 0.1,
+  "physicsLinearDamping": 0.1,
+  "physicsAngularDamping": 0.1,
+  "physicsFriction": 0.2,
+  "physicsStartAwake": true,
+  "physicsKinematic": false,
+  "physicsShapePoints": [
+    {"x":128.0,"y":48.0,},
+    {"x":128.0,"y":128.0,},
+  ],
+  "eventList": [
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+  ],
+  "properties": [],
+  "overriddenProperties": [],
+  "parent": {
+    "name": "Login",
+    "path": "folders/Objects/UI/Login.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "btn_gui_yes_nodismiss",
+  "tags": [],
+  "resourceType": "GMObject",
+}

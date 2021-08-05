@@ -1,0 +1,2 @@
+SharedScheduler_Destroy();
+
