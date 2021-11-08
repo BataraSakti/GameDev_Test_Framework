@@ -19,11 +19,11 @@ switch(display_stage) {
         input_val = "";
         
         //Get live data. 
-        /*Code goes here*/
-        
+        /*Codes goes here*/
+
         //Pick one of the marshmen to be correct
-       /*Code goes here*/
-        
+        /*Codes goes here*/
+
 		if (array_length(marshmen_answers) > 0){
 	        //Play Audio and start
 	        target_text_to_speak = string(marshmen_answers[0]);
@@ -64,26 +64,37 @@ switch(display_stage) {
         inputs = 0;
         input_val = "";
         t_list = ds_list_create();
-        var num_game2_type1 = array_length(game2_type1_cats);
-        var num_game2_type2 = array_length(game2_type2_cats);
+        num_game2_type1 = array_length(game2_type1_cats);
+        num_game2_type2 = array_length(game2_type2_cats);
 		
         switch (type_2_mode) {
             case 1: {
                 //Update Instructions...
-                var random_index = irandom_range(0, num_game2_type1 - 1);
+                random_index = irandom_range(0, num_game2_type1 - 1);
 				
                 var t_toptxt = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type1_cats[random_index]);
 				var checker = string_count(string(t_toptxt), string(_val_game2_type1));
 				
-				
-                //ds_list_add(randomed_index1, random_index);
-                //array_push(_val_game2_type1, t_toptxt);
+				var error_of_xml = 0;
+                while(checker > 0 || top_text == t_toptxt){
+					if(error_of_xml >= 50){
+						scpGetUserConfirm(_mgc, "", 9, "", 9, noone, "error", "restart_required_title", true, 0, p_gui_user_confirm);
+						exit;
+					}
+                    //will find antoher index if already choosen or the category is same as before(consecutively same)
+					show_debug("FEBRI Game_2 type_2_1 same question detected. Randomize again..");
+                    random_index = irandom_range(0, num_game2_type1 - 1);
+                    t_toptxt = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type1_cats[random_index]);
+					checker = string_count(string(t_toptxt), string(_val_game2_type1));
+					error_of_xml++;
+				}
 				
                 top_text = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type1_cats[random_index]);
                 target_text_to_speak = top_text;
                 
                 //assign the answers and distraction for the marshmen
-				 /*Codes goes here*/
+				/*Codes goes here*/
+
                 break;
             }
             case 2: {
@@ -96,26 +107,25 @@ switch(display_stage) {
 				//while(ds_list_find_index(randomed_index2, random_index) != -1 || top_text == t_toptxt){
 				while(checker > 0 || top_text == t_toptxt){
                     //will find antoher index if already choosen or the category is same as before(consecutively same)
-					show_debug("DUD Game_2 type_2_2 same question detected. Randomize again..");
+					show_debug("FEBRI Game_2 type_2_2 same question detected. Randomize again..");
                     random_index = irandom_range(0, num_game2_type2 - 1);
                     t_toptxt = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type2_cats[random_index]);
 					checker = string_count(string(t_toptxt), string(_val_game2_type2));
 				}
-                
-                //ds_list_add(randomed_index2, random_index);
-				//array_push(_val_game2_type2, t_toptxt);
 				
-                top_text = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type2_cats[random_index]);
+				top_text = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type2_cats[random_index]);
                 target_text_to_speak = top_text;
                 
-               //assign the answers and distraction for the marshmen
-				 /*Codes goes here*/
+                //assign the answers and distraction for the marshmen
+				/*Codes goes here*/
+
                 break;
             }
         }
         
         //Scarmble the value and of the marshmen
-       /*Codes goes here*/
+        /*Codes goes here*/
+
                 
         //We actually want to nuke out play audio button - they only get to listen to it once
         ScheduleScript(id, true, 0.10, perform_event, b_swap, 0);
@@ -145,11 +155,32 @@ switch(display_stage) {
         target_text_to_speak = top_text;
         
         round_value = cur_round-1;
-        
+         if(diff_level == 0) {
+			var dx = 0;
+            round_value = irandom_range(0, array_length(game3_values)-1);
+			show_debug("FEBRI Game_3 questions amount: "+string(array_length(game3_values)));
+			show_debug("FEBRI Game_3 init round_value : "+string(round_value));
+			
+			//somehow the value exceed the range, so random again
+			while(round_value > array_length(game3_values)-1){
+				show_debug("FEBRI Game_3 init round_value exceed the range. Randomize again..");
+				round_value = irandom_range(0, array_length(game3_values)-1);
+			}
+			
+			if(array_length(game_3_repeat_question_arr) > 0){
+				while(round_value == game_3_repeat_question_arr[dx]){
+					//get another question if its already spawned.
+					show_debug("FEBRI Game_3 same question detected. Randomize again..");
+					round_value = irandom_range(0, array_length(game3_values)-1);
+					//dx++;
+				}
+			}
+        }
 
         //Get Values
-       //assign the answers and distraction for the marshmen
-	   /*Codes goes here*/
+        //assign the answers and distraction for the marshmen
+	    /*Codes goes here*/
+
         
         //Get the display values 
         show_debug("Display Value ---- " + string(game3_display[round_value]));
@@ -183,7 +214,7 @@ switch(display_stage) {
         text_blob = scp_split_at_nearest_char(text_blob, 44, 6);        
         
         //Randomiz the values... 
-       //scramble the choices
+        //scramble the choices
 		/*Codes goes here*/
                 
         //We actually want to nuke out play audio button - they only get to listen to it once
@@ -201,7 +232,7 @@ switch(display_stage) {
         show_debug("Start Round");
 		
 		array_push(game_3_repeat_question_arr, round_value);
-		show_debug("DUD insert round_value : "+string(round_value)+" to array game_3_repeat_question_arr");
+		show_debug("FEBRI insert round_value : "+string(round_value)+" to array game_3_repeat_question_arr");
         break;
     }
 	case 4: {
@@ -217,11 +248,31 @@ switch(display_stage) {
         target_text_to_speak = top_text;
         
         round_value = cur_round-1;
-        
+         if(diff_level == 0) {
+			var dx = 0;
+            round_value = irandom_range(0, array_length(game4_values)-1);
+			show_debug("FEBRI Game_4 questions amount: "+string(array_length(game4_values)));
+			show_debug("FEBRI Game_4 init round_value : "+string(round_value));
+			
+			//somehow the value exceed the range, so random again
+			while(round_value > array_length(game4_values)-1){
+				show_debug("FEBRI Game_4 init round_value exceed the range. Randomize again..");
+				round_value = irandom_range(0, array_length(game4_values)-1);
+			}
+			
+			if(array_length(game_4_repeat_question_arr) > 0){
+				while(round_value == game_4_repeat_question_arr[dx]){
+					//get another question if its already spawned.
+					show_debug("FEBRI Game_4 same question detected. Randomize again..");
+					round_value = irandom_range(0, array_length(game4_values)-1);
+					//dx++;
+				}
+			}
+        }
 
         //Get Values
-       //assign the answers and distraction for the marshmen
-	   /*Codes goes here*/
+        //assign the answers and distraction for the marshmen
+	    /*Codes goes here*/
         
         //Get the display values 
         show_debug("Display Value ---- " + string(game4_display[round_value]));
@@ -254,8 +305,8 @@ switch(display_stage) {
 		text_blob = string_replace_all(text_blob, "&quot;", "\"");
         text_blob = scp_split_at_nearest_char(text_blob, 54, 6);        
         
-         //Randomiz the values... 
-       //scramble the choices
+        //Randomiz the values... 
+        //scramble the choices
 		/*Codes goes here*/
                 
         //We actually want to nuke out play audio button - they only get to listen to it once
@@ -273,7 +324,7 @@ switch(display_stage) {
         show_debug("Start Round");
 		
 		array_push(game_4_repeat_question_arr, round_value);
-		show_debug("DUD insert round_value : "+string(round_value)+" to array game_4_repeat_question_arr");
+		show_debug("FEBRI insert round_value : "+string(round_value)+" to array game_4_repeat_question_arr");
         break;
     }
     case 5: {
@@ -290,20 +341,39 @@ switch(display_stage) {
         target_text_to_speak = top_text;
         
         round_value = cur_round-1;
-      
+		if(diff_level == 0) {
+			var dx = 0;
+            round_value = irandom_range(0, array_length(game5_values)-1);
+			show_debug("FEBRI Game_5 questions amount: "+string(array_length(game5_values)));
+			show_debug("FEBRI Game_5 init round_value : "+string(round_value));
+			
+			//somehow the value exceed the range, so random again
+			while(round_value > array_length(game5_values)-1){
+				show_debug("FEBRI Game_5 init round_value exceed the range. Randomize again..");
+				round_value = irandom_range(0, array_length(game5_values)-1);
+			}
+			
+			if(array_length(game_5_repeat_question_arr) > 0){
+				while(round_value == game_5_repeat_question_arr[dx]){
+					//get another question if its already spawned.
+					show_debug("FEBRI Game_5 same question detected. Randomize again..");
+					round_value = irandom_range(0, array_length(game5_values)-1);
+					//dx++;
+				}
+			}
+        }
 
-        //Get Values
-       /*Codes goes here*/ 
-        
-        //Set the correct answer(s)
+        //Get Values & Set the correct answer(s)
         /*Codes goes here*/
+
         
         //Get the display values 
         show_debug("Display Value ---- " + string(game5_values[round_value]));
         /*Codes goes here*/
-        
+
         //Randomiz the values... 
-       /*Codes goes here*/ 
+        /*Codes goes here*/ 
+
     
         //We actually want to nuke out play audio button - they only get to listen to it once
         ScheduleScript(id, true, 0.10, perform_event, b_swap, 0);
@@ -320,7 +390,7 @@ switch(display_stage) {
         show_debug("Start Round");
 		
 		array_push(game_5_repeat_question_arr, round_value);
-		show_debug("DUD insert round_value : "+string(round_value)+" to array game_5_repeat_question_arr");
+		show_debug("FEBRI insert round_value : "+string(round_value)+" to array game_5_repeat_question_arr");
         break;
     }
 	case 6:{
@@ -333,13 +403,33 @@ switch(display_stage) {
         input_val = "";
 		
 		round_value = cur_round-1;
-        
+        if(diff_level == 0) {
+			var dx = 0;
+            round_value = irandom_range(0, array_length(game6_option)-1);
+			show_debug("FEBRI Game_6 questions amount: "+string(array_length(game6_option)));
+			show_debug("FEBRI Game_6 init round_value : "+string(round_value));
+			
+			//somehow the value exceed the range, so random again
+			while(round_value > array_length(game6_option)-1){
+				show_debug("FEBRI Game_6 init round_value exceed the range. Randomize again..");
+				round_value = irandom_range(0, array_length(game6_option)-1);
+			}
+			
+			if(array_length(game_6_repeat_question_arr) > 0){
+				while(round_value == game_6_repeat_question_arr[dx]){
+					//get another question if its already spawned.
+					show_debug("FEBRI Game_6 same question detected. Randomize again..");
+					round_value = irandom_range(0, array_length(game6_option)-1);
+					//dx++;
+				}
+			}
+        }
 		
 		marshmen_values = scp_split_string(game6_option[round_value], ";");
         
         //Pick one of the marshmen to be correct
 		/*Codes goes here*/
-        
+
         //We actually want to nuke out play audio button - they only get to listen to it once
         ScheduleScript(id, true, 0.10, perform_event, b_swap, 0);
         b_swap = noone;
@@ -356,7 +446,7 @@ switch(display_stage) {
         test_timer_tock = true; //false = freeze timer
 		
 		array_push(game_6_repeat_question_arr, round_value);
-		show_debug("DUD insert round_value : "+string(round_value)+" to array game_6_repeat_question_arr");
+		show_debug("FEBRI insert round_value : "+string(round_value)+" to array game_6_repeat_question_arr");
 		break;
 	}
     case 7: {

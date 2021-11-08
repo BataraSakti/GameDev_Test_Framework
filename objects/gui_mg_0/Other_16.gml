@@ -10,7 +10,6 @@ switch(display_stage) {
 		b_hint.p_xscale_dest = 0.8;
 		b_hint.action_id = 0;
 		
-		
         //We just need to make X marshmen on the 2 levels using the preset values.
 		/*Codes goes here*/
        
@@ -21,7 +20,7 @@ switch(display_stage) {
         show_debug("Spawn Marshmen 2");
 		
         //We just need to make X marshmen on the 2 levels using the preset values.
-		 /*Codes goes here*/
+		/*Codes goes here*/
 
         break;
     }
@@ -30,8 +29,8 @@ switch(display_stage) {
         show_debug("Spawn Marshmen 3");
 
         //We just need to make X marshmen on the 2 levels using the preset values.
-         /*Codes goes here*/
-        
+        /*Codes goes here*/
+		
         break;
     }
 	case 4: {
@@ -40,7 +39,7 @@ switch(display_stage) {
 
         //We just need to make X marshmen on the 2 levels using the preset values.
         /*Codes goes here*/
-        
+
         break;
     }
     case 5: {
@@ -48,7 +47,7 @@ switch(display_stage) {
         show_debug("Spawn Marshmen 4");
         
         //We just need to make X marshmen on the 2 levels using the preset values.
-         /*Codes goes here*/
+        /*Codes goes here*/
 
         break;
     }
@@ -57,8 +56,10 @@ switch(display_stage) {
 		//We just need to make X marshmen on the 2 levels using the preset values.
         show_debug("Spawn Marshmen 1");
 		trial = false;
+		
         //We just need to make X marshmen on the 2 levels using the preset values.
-       /*Codes goes here*/
+        /*Codes goes here*/
+
         break;
 	}
 }
