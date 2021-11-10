@@ -189,7 +189,7 @@ if(eval_data_preloaded && checksum){
     event_user(7);
 }else{
     show_debug_message("Eval game - the data has not finished preloading, force loading it now!");
-    scp_preload_mg0_data(false);
+    //scp_preload_mg0_data(false);
 }
 
 player_retrys = 0;
@@ -217,14 +217,12 @@ perform_event(_TTS, 1);
 txt_htp_scale = 1;
 txt_htp_maxscale = 0.4;
 
+scp_preload_mg0_data();
 
 prol_skip = "";
 isRound_correct = 0;
 
 scheduled_event = -1;
-
-scp_preload_mg0_data();
-
 
 function f_resetDefaultSettings(_inputs, _mcount, _mans, _mord, _mtot, _sta) {                               
     inputs_needed = _inputs;
@@ -235,3 +233,102 @@ function f_resetDefaultSettings(_inputs, _mcount, _mans, _mord, _mtot, _sta) {
     start_time = _sta;
 }
 
+//json_string = "";
+//res_struct = undefined;
+//res_struct = {};
+
+//isDataLoaded = false;
+
+//function f_load_game_data(file_json){
+//	json_string = scp_read_json_file_to_string(file_json);
+//	res_struct = json_parse(json_string);
+	
+//	isDataLoaded = true;
+//}
+
+function get_data_variables(_round){
+	switch(_round){
+		case 1:{
+			//Get live data. 
+	        for(var i = 0; i < marshmen_count; i++) {
+	            var ts = ds_list_size(round_data_list);
+	            var idx = irandom_range(0, ts-1);
+	            var vvv = ds_list_find_value(round_data_list, idx);
+	            ds_list_delete(round_data_list, idx);
+	            show_debug("Got - " + string(vvv) + " - Value for Type 1 Mode - " + string(type_1_mode));
+	            marshmen_values[i] = vvv;
+	        }
+        
+	        //Pick one of the marshmen to be correct
+	        marshmen_answers[0] = marshmen_values[irandom_range(0, marshmen_count-1)]; //marshmen_values[1]; 
+			var dx = 0;
+			if(array_length(game_1_repeat_question_arr) > 0){
+				while(marshmen_answers[0] == game_1_repeat_question_arr[dx]){
+					//get another answer if its already spawned
+					show_debug("FEBRI Game_1 same question detected. Randomize again..");
+					marshmen_answers[0] = marshmen_values[irandom_range(0, marshmen_count-1)]; //marshmen_values[1];
+					//dx++
+				}
+			}
+        
+			if (array_length(marshmen_answers) > 0){
+		        //Play Audio and start
+		        target_text_to_speak = string(marshmen_answers[0]);
+		        forceVoice(target_text_to_speak, "en-us");
+		        show_debug("Start Round");
+			}
+			break;
+		}
+	}
+}
+
+function spawn_marshmellows(_round){
+	switch(_round){
+		case 1:{
+			var per_level = marshmen_count div 2; 
+	        var ext = marshmen_count % 2;
+        
+	        var j = 0;
+                
+	        for(var i = 0; i < per_level + ext; i++) {
+	            b_no = createButtonTargeted((x - 100) + (i*200), y+122, marsh_lay_top, o_marshman, id, 5);
+	            b_no.text = string(marshmen_values[j]);
+	            b_no.dvalue = marshmen_values[j];
+	            b_no.danswer = marshmen_answers[0];
+				if(type_1_mode == 1){
+					with(o_marshman){
+						if(dvalue == danswer){
+							draw_hand = true;
+						}
+					}
+				}
+	            j++;
+	        }
+        
+	        for(var i = 0; i < per_level; i++) {
+	            b_no = createButtonTargeted(300 + (i*600), y+122, marsh_lay_bot, o_marshman, id, 5);
+	            b_no.text = string(marshmen_values[j]);
+	            b_no.dvalue = marshmen_values[j];
+	            if(string(marshmen_values[j]) == string(marshmen_answers[0])) {
+	                b_no.danswer = marshmen_values[j];
+	            }
+				if(type_1_mode == 1){
+					with(o_marshman){
+						if(dvalue == danswer){
+							draw_hand = true;
+						}
+					}
+				}
+	            j++;
+	        } 
+			break;
+		}
+	}
+}
+
+
+
+function f_init_marshmellows(_round){
+	get_data_variables(_round);
+	spawn_marshmellows(_round);
+}

@@ -10,10 +10,11 @@ switch(display_stage) {
 		b_hint.p_xscale_dest = 0.8;
 		b_hint.action_id = 0;
 		
-		
-        //We just need to make X marshmen on the 2 levels using the preset values.
-		/*Codes goes here*/
-       
+		f_init_marshmellows(display_stage);
+        
+        b_no = noone;
+		hand_x = o_marshman.x+30;
+		hand_y = o_marshman.y+60;
         break;
     }
     case 2: {
