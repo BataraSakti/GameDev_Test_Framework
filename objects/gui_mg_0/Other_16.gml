@@ -6,13 +6,11 @@ switch(display_stage) {
         show_debug("Spawn Marshmen 1");
 		b_hint = createButtonTargeted(x, y - 105, elements_layer, btn_icon_center, id, 8, "", "" ,"", spr_btn_repeat_speak, 0.8);
 		b_hint.icon = noone;
-		//b_hint.icon_scale = 1.7;
 		b_hint.p_xscale_dest = 0.8;
 		b_hint.action_id = 0;
 		
 		f_init_marshmellows(display_stage);
-        
-        b_no = noone;
+
 		hand_x = o_marshman.x+30;
 		hand_y = o_marshman.y+60;
         break;
@@ -21,8 +19,7 @@ switch(display_stage) {
         //Game Type 2 - Select the words in the category.
         show_debug("Spawn Marshmen 2");
 		
-        //We just need to make X marshmen on the 2 levels using the preset values.
-		 /*Codes goes here*/
+        f_init_marshmellows(display_stage);
 
         break;
     }

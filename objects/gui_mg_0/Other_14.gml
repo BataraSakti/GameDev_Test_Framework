@@ -24,12 +24,7 @@ switch(display_stage) {
         //Pick one of the marshmen to be correct
        /*Code goes here*/
         
-		if (array_length(marshmen_answers) > 0){
-	        //Play Audio and start
-	        target_text_to_speak = string(marshmen_answers[0]);
-	        forceVoice(target_text_to_speak, "en-us");
-	        show_debug("Start Round");
-		}
+		
         
 	    //We actually want to nuke out play audio button - they only get to listen to it once
 	    ScheduleScript(id, true, 0.10, perform_event, b_swap, 0);
@@ -74,16 +69,6 @@ switch(display_stage) {
 				
                 var t_toptxt = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type1_cats[random_index]);
 				var checker = string_count(string(t_toptxt), string(_val_game2_type1));
-				
-				
-                //ds_list_add(randomed_index1, random_index);
-                //array_push(_val_game2_type1, t_toptxt);
-				
-                top_text = string_replace(text_type_2_top_1, "&&CAT_NAME&&", game2_type1_cats[random_index]);
-                target_text_to_speak = top_text;
-                
-                //assign the answers and distraction for the marshmen
-				 /*Codes goes here*/
                 break;
             }
             case 2: {
