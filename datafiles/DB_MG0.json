@@ -41,7 +41,7 @@
     },
     "Meta_3_1": {
       "Inputs": 1,
-      "MCount": 7,
+      "MCount": 5,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 16,
@@ -49,7 +49,7 @@
     },
     "Meta_3_2": {
       "Inputs": 1,
-      "MCount": 7,
+      "MCount": 5,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 16,
@@ -57,7 +57,7 @@
     },
     "Meta_4_1": {
       "Inputs": 1,
-      "MCount": 7,
+      "MCount": 5,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 16,
@@ -65,7 +65,7 @@
     },
     "Meta_4_2": {
       "Inputs": 1,
-      "MCount": 7,
+      "MCount": 5,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 16,
@@ -73,7 +73,7 @@
     },
     "Meta_5_1": {
       "Inputs": 7,
-      "MCount": 7,
+      "MCount": 6,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 29,
@@ -81,7 +81,7 @@
     },
     "Meta_5_2": {
       "Inputs": 7,
-      "MCount": 7,
+      "MCount": 6,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 29,
@@ -89,7 +89,7 @@
     },
     "Meta_6_1": {
       "Inputs": 1,
-      "MCount": 1,
+      "MCount": 4,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 1,
@@ -97,7 +97,7 @@
     },
     "Meta_6_2": {
       "Inputs": 1,
-      "MCount": 1,
+      "MCount": 4,
       "ACount": 1,
       "MOrder": 1,
       "Rounds": 1,
@@ -428,7 +428,7 @@
       "Record_KEY": 40,
       "Mode": 5,
       "Type": 2,
-      "String": "Factor,is something that,plays a role,in a particular,condition or event.",
+      "String": "Factor,is something that,plays a role,in a particular,condition,or event.",
       "Answer": "Factor is something that plays a role in a particular condition or event."
     },
     "R9": {

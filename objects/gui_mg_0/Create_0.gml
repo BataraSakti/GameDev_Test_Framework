@@ -1,374 +1,617 @@
-///@description declaration and initiation
-scp_declare_mg0_variable();
+///@description function and variable definitions
 
 
-te_y = 0;
+/*======== variables definitions ==========*/
+game_data = undefined;
+game_type_data = undefined;
+timer = 210;
+ui_state = 0;
 
-b_hint = noone;
-max_hint = 0;
+//object layer
+elements_layer = layer_exists_create(my_depth() - 2);
+marsh_lay_top = layer_exists_create(my_depth()-2);
+marsh_lay_bot = layer_exists_create(my_depth()-3);
 
-trial = true;
-try_count = 0;
-text_try = true;
-try_correct = 0;
+b_yes = undefined;
+htp_text = "How to play";
+isDataLoaded = false;
+isSampleRound = true;
 
-spec_counter = 0; //special counter, needed for stage that only has 1 total_round
-spec_counter_stage_3 = 0; //special counter only for stage 3
-spec_counter_stage_4 = 0; //special counter only for stage 4
-spec_counter_stage_5 = 0; //special counter only for stage 5
-
-//array to hold question id to prevent repeatance
-game_1_repeat_question_arr = [];
-game_3_repeat_question_arr = [];
-game_4_repeat_question_arr = [];
-game_5_repeat_question_arr = [];
-game_6_repeat_question_arr = [];
-
-//Delta Clock
-mg0_final_granular = "";
-tick = 0;
-tock = false;
-lastEval = 0;
+//sprite
 //Load the parts
 backer = sprite_add("bg_mg0_candyland.png",1, false, false, 512, 512);
 shelf =  sprite_add("bg_mg0_candypath.png",1, false, false, 512, 128);
 tut1 =  sprite_add("gui_mg0_step1_box.png",1, false, false, 512, 128);
 tut2 =  sprite_add("gui_mg0_step2_box.png",1, false, false, 512, 128);
 
-mg_index = 0;
-diff_level = 0;
-
-_score = 0;
-not_started = 1;
-
-closed = true;
-closed_x = x;
-open_x = 640;
-open_time = 0.67;
-update_time = open_time-0.10;
-text_fade_time = open_time/2;
-image_alpha_2 = 0; 
-image_alpha_3 = 0;
-control_y = -264;
-control_x = 454;
-
-b_yes = noone;
-b_marshman = noone;
+//Buttons
+b_hint = noone;
 b_swap = noone;
-b_gui = noone;
 b_volume = noone;
-frame = undefined;
+b_gui = noone;
 
-b_c = c_black;
-f_c = c_white;
-c_ltg = c_ltgray;
-c_b = c_black;
-c_c = c_white;
-
-
-no_fade = false; //if true skips the fade between ui dismiss and control - resets itself.
-
-//Game vars
-type_1_mode = 1; //1 Numbers, 2 Letters, 3 Words
-type_2_mode = 1; //1 Hypernym, 2 Synonym
-type_3_mode = 1; //1 Play, 2 Review
-type_4_mode = 1; //1 Play, 2 Review
-type_5_mode = 1; //1 Play, 2 Review
-type_6_mode = 1; //1 Play, 2 Review
-
-text_type_1_top_1 = "Listen and then select the correct number.";
-text_type_1_top_2 = "Listen and then select the correct letter.";
-text_type_1_top_3 = "Listen and then select the correct word.";
-text_type_2_top_1 = "Pick the three &&CAT_NAME&& words.";
-text_type_3_top_1 = "Pick the missing word to complete the sentence.";
-text_type_4_top_1 = text_type_3_top_1;
-text_type_5_top_1 = "Arrange the words into a perfect sentence.";
-text_type_6_top_1 = "Match each paragraph to the correct heading in the multiple-choice format.";
-
-top_text = text_type_1_top_3;
-cur_round = 1;
-total_round = 5;
-start_time = 20;
-cur_time = start_time;
-time_text = string(cur_time)+"s";
-round_text = string(cur_round)+"/"+string(total_round);
-target_text_to_speak = "Test";
-text_solve = "Solve this sentence";
-test_cur_round = 1;
-test_total_round = 12;
-
-_val_game2_type1 = [];
-_val_game2_type2 = [];
-
-diff_level = 0; //Testing mode
-display_stage = 0; //Intro
-last_stage = 0;
-next_stage = 0;
-//People Cache
-loaded = false;
+//Text
+instruction_text = "";
+danswer = "";
+player_answer = "";
+marsman_answer = "";
 text_blob = "";
-text = "";
-t_level = "1";
-
-data_map = undefined;
-
-iUID = 1;
-social_id = "";
-sUserName = "";
-sChatName = "";
-iLevel = 1;
-sSocialIconLink = "";
-iLocalIconIndex = 0;
-sprIcon = spr_profile_heads;
-
-draw_question_game6 = false;
-ret_text = "";
-
-htp_text = "How to play";
-
-
-//Game Play Data
-marshmen_count = 4;
-marshmen_values = "";
-for(var i = 0; i < marshmen_count; i++) {
-    marshmen_values[i] = irandom_range(1,100);
-}
-
-marshmen_answers_count = 1;
-marshmen_order = true;
-marshmen_answers = "";
-marshmen_display = ""; //Array of displayed answers for type 3 and 4
-marshmen_answers[0] = marshmen_values[1];
-
-inputs_needed = 1;
-inputs = 0;
-c_counter = 0;
-input_val = "";
-
-ret_value = "";
-ret_man = noone;
-
-//Reset stuff
-force_end = false;
-allowed_retrys = 1;
-
-//Players results data
-num_correct = 0;
-round_value = 0;
-
-test_timer_tock = false;
-test_timer_tick = 0;
-test_timer_time = 0;
-
+text_solve = "Solve this sentence";
 text_game6 = "";
-player_type_1_mode_1 = "";
-player_type_1_mode_2 = "";
-player_type_1_mode_3 = "";
-player_type_2_mode_1 = "";
-player_type_2_mode_2 = "";
-player_type_3_mode_1 = "";
-player_type_4_mode_1 = "";
-player_type_5_mode_1 = "";
-player_type_6_mode_1 = "";
 
-did_do_seven = false;
+max_wrong = 2;
+max_hint = 0;
+current_wrong = 0;
+display_stage = 0;
 
-call_from_prolog_skip = false;
-
-var checksum = ds_exists(eval_game1_numbers, ds_type_list);
-if(checksum && ds_list_size(eval_game1_numbers) > 0) {
-    checksum = ds_exists(eval_game1_letters, ds_type_list);
-    if(checksum && ds_list_size(eval_game1_letters) > 0) {
-		checksum = 1;
-        } else { 
-        checksum = 0;
-    }
-}
-
-if(eval_data_preloaded && checksum){  
-    event_user(7);
-}else{
-    show_debug_message("Eval game - the data has not finished preloading, force loading it now!");
-    //scp_preload_mg0_data(false);
-}
-
-player_retrys = 0;
-
-//Data to pull from (so it can reset for every X question instead of every question
-round_data_list = ds_list_create();
-
-//to detect if Game-Type 2 realy started
-isType2Started = false;
-
-already_progressed = false;
-
-randomed_index1 = ds_list_create();
-randomed_index2 = ds_list_create();
+round_number = 1; //start from -1 for 2 sample round before the 1st round
+total_round = 12;
+current_game_type = 1;
 
 
-elements_layer = layer_exists_create(my_depth() - 2);
-marsh_lay_top = layer_exists_create(my_depth()-2);
-marsh_lay_bot = layer_exists_create(my_depth()-3);
 
-//update en tts rate
-perform_event(_TTS, 1);
+marsmans = [];
+shadow_marshmans = [];
 
-// text size control
-txt_htp_scale = 1;
-txt_htp_maxscale = 0.4;
+/*========= end of variables definition =========*/
 
-scp_preload_mg0_data();
+/*====== Utilities Function ======*/
 
-prol_skip = "";
-isRound_correct = 0;
-
-scheduled_event = -1;
-
-function f_resetDefaultSettings(_inputs, _mcount, _mans, _mord, _mtot, _sta) {                               
-    inputs_needed = _inputs;
-    marshmen_count = _mcount;
-    marshmen_answers_count = _mans;
-    marshmen_order = _mord;
-    total_round = _mtot;
-    start_time = _sta;
-}
-
-json_string = "";
-res_struct = undefined;
-res_struct = {};
-
-isDataLoaded = false;
-
-function f_load_game_data(file_json){
-	json_string = scp_read_json_file_to_string(file_json);
-	res_struct = json_parse(json_string);
+function get_game_data(_data_struct, _data_path){
+	var _data = _data_struct;
+	_data_path = scp_split_string(_data_path, ".");
 	
-	isDataLoaded = true;
-}
-
-marshmen_list = ds_list_create();
-
-function spawn_marshmellows(_round){
-	var game_num = variable_struct_get(res_struct, "Game_"+string(_round));
-	var _numbering = "R1";
-	if(_round == 1){
-		if(type_1_mode == 1){ _numbering = "R1"; }
-		else if(type_1_mode == 2){ _numbering = "R2"; }
-	}else if(_round == 2){
-		_numbering = "R"+string(irandom_range(1,10));
+	for (var i = 0; i < array_length(_data_path); i++){
+		_data = variable_struct_get(_data, _data_path[i]);
 	}
-	var round_num = variable_struct_get(game_num, _numbering);
-	var string_res = variable_struct_get(round_num, "String");
-	var values_res = variable_struct_get(round_num, "Values");
-	var array_res = scp_split_string(string_res, ",");
-	var list_res = scp_array_to_list(array_res);
 	
-	if(_round == 2){
-		var cat_res = variable_struct_get(round_num, "Cat");
-		top_text = string_replace(text_type_2_top_1, "&&CAT_NAME&&", cat_res);
-	    target_text_to_speak = top_text;
+	return _data;
+}
+
+function destroy_current_ui_objects(){
+	with (b_yes){event_user(0);}
+	with (b_swap){event_user(0);}
+	with (b_volume){event_user(0);}
+	with(o_marshman){event_user(0);}
+	with(b_hint){event_user(0);}
+	with(b_gui){event_user(0);}
+	marsmans = [];
+	player_answer = "";
+	shadow_marshmans = [];
+}
+
+function goto_ui_state(_state_number){
+	destroy_current_ui_objects();
+	ui_state = _state_number;
+	alarm[1] = room_speed * 0.5;
+}
+
+function start_timer(){
+	alarm[0] = room_speed * 1;
+}
+
+function stop_timer(){
+	alarm[0] = -1;
+}
+
+function finish_gameplay(){
+	destroy_current_ui_objects();
+	b_yes = createButtonTargeted(x, y + 160, elements_layer, gui_yes_text_top,id, 1, "");
+	b_yes.action_id = 4;
+    b_gui = instance_create_layer(x,y,elements_layer,gui_progress_overlay);
+	var _score = round(round_number/2.4);
+	b_gui.dvalue = _score;
+    b_gui.lvalue = _score;
+}
+
+function get_game_type(_round_number){
+	if (_round_number < 1){
+		return 1; 
+	} else {
+		return ceil(_round_number/2); //since each game type have 2 rounds
 	}
-				
-	var _c = variable_struct_get(res_struct, "C");
-	var meta_num = variable_struct_get(_c, "Meta_"+string(_round)+"_1");
-	marshmen_count = variable_struct_get(meta_num, "MCount");
-	
-	if(_round == 1){
-		for(var i=0; i<marshmen_count ;i++){
-			var idx = irandom_range(0, ds_list_size(list_res)-1);
-			var _val = ds_list_find_value(list_res, idx);
-			ds_list_delete(list_res, idx);
-			marshmen_values[i] = _val;
+}
+
+function get_instruction_text(_round_number){
+	var _game_type = get_game_type(_round_number);
+	switch(_game_type){
+		case 1:{
+			if (_round_number <= 1){
+				return "Listen and then select the correct letter.";
+			} else {
+				return "Listen and then select the correct number.";
+			}
+			break;
 		}
-		marshmen_answers[0] = marshmen_values[irandom_range(0, marshmen_count-1)];
+		case 2:{
+			return "Pick the three words."; break;
+		}
+		case 3:
+		case 4:{
+			return "Pick the missing word to complete the sentence."; break;
+		}
+		case 5:{
+			return "Arrange the words into a perfect sentence."; break;
+		}
+		case 6:{
+			return "Match each paragraph to the correct heading in the multiple-choice format.";
+		}
+	}
+}
+
+function assign_game_type1_data(_array_marshman){
+	b_hint = createButtonTargeted(x, y - 105, elements_layer, btn_icon_center, id, 1, "", "" ,"", spr_btn_repeat_speak, 0.8);
+	b_hint.icon = noone;
+	b_hint.p_xscale_dest = 0.8;
+	b_hint.action_id = 2;
+	
+	var _string = get_game_data(game_data, "Game_1.R"+string(getCurrentRound())+".String");
+	_string = scp_array_to_list(scp_split_string(_string, ","));
+	ds_list_shuffle(_string);
+	
+	var _marsman_count = array_length(_array_marshman);
+	danswer = ds_list_find_value(_string, irandom(_marsman_count-1));
+	forceVoice(danswer, "en");
+	
+	for (var i = 0; i < _marsman_count; i++){
+		with(_array_marshman[i]){
+			var _val = ds_list_find_value(_string, i);
+			text = string(_val);
+            dvalue = _val;
+			danswer = other.danswer;
+			if(other.isSampleRound()){
+				if(dvalue == other.danswer){
+					draw_hand = true;
+				}
+			}
+			action_id = 3;
+		}
+	}
+	ds_list_destroy(_string);
+}
+
+function assign_game_type2_data(_array_marshman){
+	if (is_invalid(game_type_data)){
+		game_type_data = get_game_data(game_data, "Game_2");
+	}
+	
+	var _data_length = array_length(variable_struct_get_names(game_type_data));
+	
+	var _round_data = undefined;
+	while(is_invalid(_round_data)){
+		var _R_index = irandom_range(1, _data_length);
+		_round_data = get_game_data(game_data, "Game_2.R"+string(_R_index));
+	}
+	var _cat = _round_data.Cat;
+	
+	instruction_text = "Pick the three "+string(_cat)+" words."
+	forceVoice(instruction_text, "en");
+	
+	danswer = _round_data.String;
+	var _values = _round_data.Values + ","+ danswer;
+	_values = scp_array_to_list(scp_split_string(_values, ","));
+	
+	var _removed = 0; var i = 0; var _marshman_count = array_length(_array_marshman);
+	var _need_remove = ds_list_size(_values) - _marshman_count;
+	while (_removed < _need_remove && i < ds_list_size(_values)){
+		var _val = ds_list_find_value(_values, i)
+		if (string_pos(_val, danswer) == 0){
+			ds_list_delete(_values, i);
+			_removed++;
+		} else {
+			i++;
+		}
+	}
+	
+	for (var i = 0; i < _marshman_count; i++){
+		with(_array_marshman[i]){
+			var _val = ds_list_find_value(_values, i);
+			text = string(_val);
+            dvalue = _val;
+			if (string_pos(dvalue, other.danswer) > 0){
+				danswer = dvalue;
+			}
+			action_id = 3;
+		}
+	}
+	ds_list_destroy(_values);
+	variable_struct_remove(game_type_data, "R"+string(_R_index)); //removed so it won't choosen again
+	
+}
+
+function assign_game_type3_4_data(_array_marshman){
+	if (is_invalid(game_type_data)){
+		game_type_data = get_game_data(game_data, "Game_"+string(current_game_type));
+	}
+	
+	var _data_length = array_length(variable_struct_get_names(game_type_data));
+	
+	forceVoice(instruction_text, "en");
+	
+	var _round_data = undefined;
+	while(is_invalid(_round_data)){
+		var _R_index = irandom_range(1, _data_length);
+		_round_data = get_game_data(game_data, "Game_"+string(current_game_type)+".R"+string(_R_index));
+	}
+	
+	danswer = _round_data.Answer;
+	text_blob = _round_data.String;
+	text_blob = string_replace(text_blob, "&amp;val&amp;", "---");
+	text_blob = scp_split_at_nearest_char(text_blob, 54, 6);
+	
+	var _values = scp_split_string(_round_data.Values, ",");
+	_values = scp_array_to_list(_values);
+	ds_list_shuffle(_values);
+	
+	for (var i = 0; i < array_length(_array_marshman); i++){
+		with(_array_marshman[i]){
+			var _val = ds_list_find_value(_values, i);
+			text = string(_val);
+            dvalue = _val;
+			if (string_pos(dvalue, other.danswer) > 0){
+				danswer = dvalue;
+			}
+			action_id = 3;
+		}
+	}
+	ds_list_destroy(_values);
+	variable_struct_remove(game_type_data, "R"+string(_R_index)); //removed so it won't choosen again
+}
+
+function assign_game_type5_data(_array_marshman){
+	if (is_invalid(game_type_data)){
+		game_type_data = get_game_data(game_data, "Game_"+string(current_game_type));
+	}
+	
+	var _data_length = array_length(variable_struct_get_names(game_type_data));
+	
+	forceVoice(instruction_text, "en");
+	
+	var _round_data = undefined;
+	while(is_invalid(_round_data)){
+		var _R_index = irandom_range(1, _data_length);
+		_round_data = get_game_data(game_data, "Game_"+string(current_game_type)+".R"+string(_R_index));
+	}
+	
+	danswer = _round_data.Answer;
+	var _values = scp_split_string(_round_data.String, ",");
+	_values = scp_array_to_list(_values);
+	
+	ds_list_shuffle(_values);
+	
+	for (var i = 0; i < array_length(_array_marshman); i++){
+		with (_array_marshman[i]){
+			var _val = ds_list_find_value(_values, i);
+			text = string(_val);
+            dvalue = _val;
+			danswer = _val;
+			action_id = 3;
+			show_ring_on_press = false;
+		}
+	}
+	
+	 //Display line
+        var dis_y = y + 160;
+        var st_x = x - 425;                
+        var nn = array_length(_array_marshman);
+        var sp_x = clamp(scp_safe_divide(850,nn-1),120,240);
+        
+        for(var i = 0; i < nn; i++) {
+			shadow_marshmans[i] = createButtonTargeted(st_x + (i*sp_x), dis_y, elements_layer, o_marshman, id, noone);
+			with (shadow_marshmans[i]){
+				text = "";//string(marshmen_display[i]);
+		        dvalue = "";
+		        display_only = true;
+		        can_return = true;
+		        f_c = c_dkgray;
+		        b_c = c_ltgray;
+		        fn_sz = 0.9;
+		        image_xscale = 0.50;
+		        image_yscale = 0.50;
+		        p_xscale_start = 0.50;
+		        p_yscale_start = 0.50;
+				sprite_index = spr_marshman_outline;
+		        display_index = i;
+			}
+		}
+		ds_list_destroy(_values);
+		variable_struct_remove(game_type_data, "R"+string(_R_index)); //removed so it won't choosen again
+}
+
+function assign_game_type6_data(_array_marshman){
+	if (is_invalid(game_type_data)){
+		game_type_data = get_game_data(game_data, "Game_"+string(current_game_type));
+	}
+	
+	var _data_length = array_length(variable_struct_get_names(game_type_data));
+	
+	forceVoice(instruction_text, "en");
+	
+	var _round_data = undefined;
+	while(is_invalid(_round_data)){
+		var _R_index = irandom_range(1, _data_length);
+		_round_data = get_game_data(game_data, "Game_"+string(current_game_type)+".R"+string(_R_index));
+	}
+	
+	danswer = _round_data.Answer;
+	text_game6 = _round_data.Passage;
+	text_game6 = string_replace_all(text_game6, "&quot;", "\"");
+	text_game6 = scp_split_at_nearest_char(string(text_game6), 65);
+	
+	var _values = ds_list_create();
+	ds_list_add(_values, _round_data.A);
+	ds_list_add(_values, _round_data.B);
+	ds_list_add(_values, _round_data.C);
+	ds_list_add(_values, _round_data.D);
+	ds_list_shuffle(_values);
+	
+	for (var i = 0; i < array_length(_array_marshman); i++){
+		with (_array_marshman[i]){
+			text = scp_split_at_nearest_char(ds_list_find_value(_values, i));
+            dvalue = ds_list_find_value(_values, i);
+            if(dvalue == other.danswer) {
+               danswer = dvalue;
+            }
+			sprite_index = spr_rect_colors_bottom_shading;
+			sprite = sprite_index;
+			marshman_index = 2;
+			text_yoff = 0;
+			_nine_slice = true;
+			fn_halign = fa_left;
+			b_c = c_white;
+			f_c = c_white;
+			px = 0;
+			fn_sz = 1.5;
+			text_xoff = -180;
+			txt_width = 250;
+			action_id = 3;
+		}
+	}
+}
+
+function isSampleRound(){
+	return round_number < 1? true : false;
+}
+
+function getCurrentRound(){
+	return clamp(round_number,1,total_round);
+}
+
+
+function isTimerRunning(){
+	return alarm_get(0) > 0;
+}
+
+function marshman_single_answer_responder(){
+	player_answer = marsman_answer; //get it from pressed marsman
+	if (timer > 0){
+		if (player_answer == danswer){
+			//correct
+			round_number++;
+	
+			//game instruction
+			goto_ui_state(1);
+			
+		} else {
+			if (!isSampleRound()){
+				current_wrong++;
+			}
+			
+			if (current_wrong >= max_wrong){
+				finish_gameplay();
+			} else {
+				//next attempt
+				goto_ui_state(1);
+			}
+		}
+	} else {
+		finish_gameplay();
+	}
+}
+
+function game5_move_marshman(){
+	for (var i = 0; i < array_length(marsmans); i++){
+		if (marsmans[i].text == string(marsman_answer)){
+			with(marsmans[i]){
+		        text = "";
+	            display_only = true;
+	            sprite_index = spr_marshman_outline;
+	            image_xscale = 0.35;
+	            image_yscale = 0.35;
+	            p_xscale_start = 0.35;
+	            p_yscale_start = 0.35;
+			}
+			break;
+		}
+	}
+	
+	for (var i = 0; i < array_length(shadow_marshmans); i++){
+		if (shadow_marshmans[i].text == ""){
+			with (shadow_marshmans[i]){
+				text = other.marsman_answer;
+	            sprite_index = spr_marshman;
+	            image_xscale = 0.65;
+	            image_yscale = 0.65;
+	            p_xscale_start = 0.65;
+	            p_yscale_start = 0.65;   
+			}
+			
+			break;
+		}
+	}
+}
+
+function is_multiple_answer_correct(){
+	if(current_game_type == 2){
+		var _player_answer = scp_array_to_list(scp_split_string(player_answer, ","));
+		var _danswer = scp_array_to_list(scp_split_string(danswer, ","));
 		
-		if (array_length(marshmen_answers) > 0){
-		    //Play Audio and start
-		    target_text_to_speak = string(marshmen_answers[0]);
-		    forceVoice(target_text_to_speak, "en-us");
-		    show_debug("Start Round");
+		var _is_correct = true;
+		
+		for (var i = 0; i < ds_list_size(_player_answer); i++){
+			var _answer = ds_list_find_value(_player_answer, i);
+			if (ds_list_find_index(_danswer, _answer) == -1){
+				_is_correct = false;
+				break;
+			}
 		}
-	}else if(_round == 2){
-		marshmen_values = scp_split_string(values_res, ",");
-		marshmen_answers = scp_split_string(string_res, ",");
+		
+		return _is_correct;
+		
+	} else if (current_game_type == 5){
+		return player_answer == danswer;
+	}
+}
+
+function marshman_multiple_answer_responder(){
+	var _check_answer = false;
+	if (player_answer == ""){
+		player_answer = marsman_answer;
+	} else {
+		if (current_game_type == 2){
+			player_answer += "," + marsman_answer;
+			if (string_count(",", player_answer) == 2){
+				_check_answer = true;
+			}
+		} else if (current_game_type == 5) {
+			player_answer += " " + marsman_answer;
+			
+			if (string_length(player_answer) == string_length(danswer)){
+				_check_answer = true;
+			}
+		}
 	}
 	
-	var per_level = marshmen_count div 2; 
-	var ext = marshmen_count % 2;
+	if (current_game_type == 5){
+		game5_move_marshman();
+	}
 	
-	ds_list_clear(marshmen_list);
+	if (timer > 0){
+		if (_check_answer){
+			if (is_multiple_answer_correct()){
+				//correct
+				round_number++;
 	
-	var top = y+52;
+				//game instruction
+				goto_ui_state(1);
+			} else {
+				current_wrong++;
+				if (current_wrong >= max_wrong){
+					finish_gameplay();
+				} else {
+					//next attempt
+					goto_ui_state(1);
+				}
+				
+			}
+		}
+	} else {
+		finish_gameplay();
+	}
+}
+
+/*====== End of Utilites Function ====*/
+
+
+/*========= Main Functions ============*/
+
+function load_game_data(_file_name){
+	game_data = json_parse(scp_read_json_file_to_string(_file_name));
+	if (is_struct(game_data)){
+		isDataLoaded = true;
+	}
+	
+}
+
+function create_marshmellows(_round_number){
+	var _marsman = [];
+	var _game_type = get_game_type(_round_number); 
+	var _cur_round = getCurrentRound();
+	var _meta_type = _cur_round mod 2 == 0 ? 2 : 1; 
+	var marshmen_count = get_game_data(game_data, "C.Meta_"+string(_game_type)+"_"+string(_meta_type)+".MCount")
+	
+    var per_level = marshmen_count div 2; 
+    var ext = marshmen_count % 2;
+        
+    var top = y+52;
     var bot = y+122;
+	if (_game_type == 1){
+		top = bot;
+	}
+	    
     var st_x = x - 100;
     var sp_x = 200;
-	var _position = bot;
 	
-	if(_round == 2){ var st_x = x - 405; var sp_x = 265; _position = top; }
-	
-	for(var i = 0; i < per_level + ext; i++) {
-		ds_list_add(marshmen_list, createButtonTargeted((st_x) + (i*sp_x), _position, marsh_lay_top, o_marshman, id, 5));
+	if (_game_type == 2){
+		st_x = x - 405;
+        sp_x = 265;
+	} else if (_game_type == 3 || _game_type == 4){
+		var mof = 115;
+        var mdst = 305;
+		
+		top = y-100;
+        bot = y-12;
+		
+		st_x = x - 405 + mof;
+        sp_x = mdst;
+	} else if (_game_type == 5){
+		var mof = 50;
+        var mdst = 270;
+		
+		top = y-100;
+        bot = y-12;
+        
+        st_x = x - 405 + mof;
+        sp_x = mdst;
+	} else if (_game_type == 6){
+		top = y+132;
+	    bot = y+232;
+        
+	    st_x = x - 255;
+	    sp_x = 510;
 	}
-    
-	var st_x = x - 300;
-    var sp_x = 600;
+        
+	for(var i = 0; i < per_level + ext; i++) {
+        array_push(_marsman, createButtonTargeted(st_x + (i*sp_x), top, marsh_lay_top, o_marshman, id, 1));
+    }
+		
+    st_x = x - 300;
+    sp_x = 600;
 	
-	if(_round == 2){ var st_x = x - 270; var sp_x = 265; }
+	if (_game_type == 2){
+		 st_x = x - 270;
+         sp_x = 265;
+	} else if (_game_type == 3 || _game_type == 4){
+		st_x = x - 260 + mof;
+		sp_x = mdst;
+	} else if (_game_type == 5){
+		st_x = x - 260 + mof;
+		sp_x = mdst;
+	} else if (_game_type == 6){
+		st_x = x - 255;
+        sp_x = 510;
+	}
+	
 	
 	for(var i = 0; i < per_level; i++) {
-		ds_list_add(marshmen_list, createButtonTargeted((st_x) + (i*sp_x), bot, marsh_lay_top, o_marshman, id, 5));
+        array_push(_marsman, createButtonTargeted(st_x + (i*sp_x), bot, marsh_lay_bot, o_marshman, id, 1));
+	}
+	
+	return _marsman;
+}
+
+function assign_marshmellows_data(_array_marshman, _round_number){
+	var _game_type = get_game_type(_round_number);
+	
+	switch(_game_type){
+		case 1:{assign_game_type1_data(_array_marshman);break;}
+		case 2:{assign_game_type2_data(_array_marshman);break;}
+		case 3:
+		case 4:{assign_game_type3_4_data(_array_marshman);break;}
+		case 5:{assign_game_type5_data(_array_marshman);break;}
+		case 6:{assign_game_type6_data(_array_marshman);break;}
 	}
 }
 
-function assign_content_data(_round, list_of_marshmen){
-	var per_level = marshmen_count div 2; 
-	var ext = marshmen_count % 2;
-	
-	for(var i=0; i<per_level + ext; i++){
-		with(ds_list_find_value(list_of_marshmen, i)){
-			text = string(other.marshmen_values[i]);
-			dvalue = other.marshmen_values[i];
-			if(_round == 1){
-				danswer = other.marshmen_answers[0];
-			}else if(_round == 2){
-				if(scp_value_in_array(string(other.marshmen_values[i]), other.marshmen_answers) == true) {
-	                danswer = other.marshmen_values[i];
-	            }
-			}
-		}
-	}
-	
-	if(_round == 1){
-		if(type_1_mode == 1){
-			with(o_marshman){ if(dvalue == danswer){ draw_hand = true; } }
-		}
-	}
-	
-	for(var i = per_level + ext; i < per_level+per_level + ext; i++) {
-		with(ds_list_find_value(list_of_marshmen, i)){
-			text = string(other.marshmen_values[i]);
-			dvalue = other.marshmen_values[i];
-			if(_round == 1){
-				if(string(other.marshmen_values[i]) == string(other.marshmen_answers[0])) {
-			        danswer = other.marshmen_values[i];
-			    }
-			}else if(_round == 2){
-				if(scp_value_in_array(string(other.marshmen_values[i]), other.marshmen_answers) == true) {
-	                danswer = other.marshmen_values[i];
-	            }
-			}
-		}
-	}
-	
-	if(_round == 1){
-		if(type_1_mode == 1){
-			with(o_marshman){ if(dvalue == danswer){ draw_hand = true; } }
-		}
-	}
-} 
-
-function f_init_marshmellows(_round){
-	f_load_game_data("DB_MG0.json");
-	spawn_marshmellows(_round);
-	assign_content_data(_round, marshmen_list);
-}
+//open the object
+event_user(0);

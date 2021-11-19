@@ -1,30 +1,60 @@
-///@description open-close
+/// @description UI state engine
+// 0. How To Play
+// 1. Round Instruction
+// 3. Game Play
+// 4. Game Result
 
-if(closed == true) {
-    image_alpha_2 = 0;
-    TweenFire(id,x__,true,EaseInOutCubic,x, open_x,open_time);
-    ScheduleEventUser(id,true,open_time,1); //Spawn in Controls
-    closed = false;
-    TweenFire(id,image_alpha_2__,true,EaseLinear,0,1, text_fade_time);
-} else {
-	event_user(2);
-    perform_event(btn_gui_confirm_no, 0);
-    if(b_gui != noone) {
-        perform_event(b_gui, 0);
-        b_gui = noone;
-    }
-    if(b_yes != noone) {
-        perform_event(b_yes, 0);
-        b_yes = noone;
-    }
-    TweenFire(id, x__, true, EaseInOutCubic,x, closed_x, open_time);
-    closed = true;
-    TweenFire(id,image_alpha_2__,true,EaseLinear,1,0, text_fade_time);
-   
-    //Boom baby boom
-    ScheduleScript(id, true, open_time + 0.2, destroy_instance, id);
-    TweenFire(id,image_alpha_2__,true,EaseLinear,1,0, text_fade_time);
 
+switch(ui_state){
+	case 0: { // How To Play
+		b_yes = createButtonTargeted(x, y + 310, elements_layer, gui_yes_text_top,id, 1, "Start");
+        with(b_yes) {
+			action_id = 0;
+            do_pulse = 0;
+            p_range = 0.35;
+            do_sunray = 1;
+            p_tween1 = TweenCreate(id, image_scale__, true, EaseInOutQuad, p_xscale_start, p_xscale_start+p_range,1);
+            TweenPlayPatrol(p_tween1);
+        }   
+		break;
+	}
 	
-}
+	case 1 :{ // Round Instruction
+		stop_timer();
+		if (round_number > total_round){
+			finish_gameplay();
+		} else{
+			instruction_text = get_instruction_text(round_number);
+			var _game_type = get_game_type(round_number);
+			if (current_game_type != _game_type){
+				current_game_type = _game_type;
+				game_type_data = undefined;
+			} 
+		
+			var _txt = "PLAY";
+		
+			if (current_game_type == 1){
+				_txt = "LISTEN";
+				b_volume = createButtonTargeted(x, y - 115, elements_layer, btn_parent, noone, noone, "", noone, noone, spr_btn_volume);
+			}
+		
+			b_swap = createButtonTargeted(x, y - 35, elements_layer, btn_PlayAudio, id, 1);
+			b_swap.text = _txt;
+		    b_swap.only_once = true;  
+			b_swap.action_id = 1;
+			b_swap.scale_text = 1.5;
+	}
+			
+		
+		
+		break;
+		
+	}
+	case 2 :{ // Game Play
+		break;
+	}
+	case 3: { // Game Result
+		break;
+	}
 
+}

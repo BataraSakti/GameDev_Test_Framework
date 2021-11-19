@@ -1,4 +1,2 @@
-if(!instance_exists(btn_PlayAudio)){
-    draw_hand = 1;
-}
-
+/// @description call state engine
+event_user(0);

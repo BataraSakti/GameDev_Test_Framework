@@ -30,6 +30,7 @@ b_sch = ScheduleNull();
 icon = noone;
 iconLeft = 1;
 iconRight = 1;
+action_id = 0;
 
 // Create new tween for "y" property
 tween_y = TweenCreate(id, y__, true);
@@ -154,4 +155,6 @@ offset_y = 0;
 read_offset = false;
 
 onpress_only = false;
+
+
 
