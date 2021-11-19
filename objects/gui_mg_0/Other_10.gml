@@ -51,10 +51,7 @@ switch(ui_state){
 		
 	}
 	case 2 :{ // Game Play
+		//Main function goes here
 		break;
 	}
-	case 3: { // Game Result
-		break;
-	}
-
 }
