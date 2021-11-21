@@ -2,7 +2,6 @@
 // 0. How To Play
 // 1. Round Instruction
 // 3. Game Play
-// 4. Game Result
 
 
 switch(ui_state){
